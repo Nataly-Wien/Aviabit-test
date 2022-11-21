@@ -1,46 +1,25 @@
-# Getting Started with Create React App and Redux
+# «АвиаБит»
+## Тестовое задание
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Компания занимается разработкой софта для авиапредприятий. Тестовое задание тематическое - необходимо сделать простое одно-двух страничное FullStack приложение для отображения общей и детальной информации по налету командира воздушного судна.
 
-## Available Scripts
+### Исходные данные:
+JSON файл с данными о налете сотрудника в составе экипажа.
+### Задание:
+•	Создать пустое приложение на основе Create React App.
+•	Получить JSON файл с данными при загрузке страницы.
+•	Реализовать исходный экран с общей статистикой по годам/месяцам. Статистика должна учитывать общие за период налет и рабочее время по факту и по плану. Под фактическими понимаются данные по уже выполненным рейсам, под плановыми – будущие рейсы.
+•	Для планового времени предусмотреть отдельное отображение. Учесть, что возможен период, где есть и плановые и фактические показатели.
+•	При нажатии на год или месяц должна открываться страница с детальной информацией за период. Информация должна содержать общую сводную информацию и список рейсов со всей информацией из исходных данных.
+•	Адаптация под мобильные устройства.
 
-In the project directory, you can run:
+### Дополнительно (будет плюсом):
+•	Можно сделать backend, отдающий по запросу требуемый JSON файл.
+•	Реализовать поиск (по номеру рейса и/или дате).
+•	Реализовать графическое представление (в виде графика) с использованием любых инструментов.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Не функциональные требования:
+•	Разрешено использовать React/Redux, TypeScript.
+•	Разрешено использовать ECMAScript 2016-2018.
+•	Желательно, чтобы информация была максимально компактна, наглядна и удобна для использования. Дизайн на усмотрение соискателя.
+•	В случае реализации backend использовать NodeJS.
