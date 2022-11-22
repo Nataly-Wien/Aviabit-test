@@ -1,0 +1,122 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+
+.year-block {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-alice-blue;
+  border-radius: 25px;
+
+  &__top-wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__year {
+    margin-right: 25px;
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 36px;
+    line-height: 1;
+    font-weight: 700;
+    color: $color-default-white;
+    background-color: $color-lochmara;
+    border-radius: 12px;
+    transition: background-color $trans-default;
+
+    @include has-hover {
+      background-color: $color-venice-blue;
+    }
+  }
+
+  &__icon svg {
+    width: 16px;
+    height: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  &__description {
+    font-size: 12px;
+  }
+
+  &__value {
+    margin-left: 10px;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: $color-default-black;
+  }
+
+  &__info {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__month-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    list-style: none;
+  }
+
+  &__month {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-default-white;
+    border-radius: 12px;
+  }
+
+  &__month-name {
+    width: 80%;
+    padding: 3px 12px;
+    margin-bottom: 8px;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-default-white;
+    background-color: $color-polo-blue;
+    border-radius: 7px;
+    transition: background-color $trans-default;
+
+    @include has-hover {
+      background-color: $color-air-force-blue;
+    }
+
+    svg {
+      width: 8px;
+      height: 12px;
+    }
+  }
+
+  &__month-info {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__month-description {
+    font-size: 10px;
+  }
+
+  &__month-value {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 700;
+    color: $color-default-black;
+  }
+}

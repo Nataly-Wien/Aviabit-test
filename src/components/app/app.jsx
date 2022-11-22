@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import StatisticPage from '../pages/statistic/statistic-page';
-import NotFoundPage from '../pages/not-found/not-found';
+import StatisticPage from '../pages/statistic-page/statistic-page';
+import NotFoundPage from '../pages/not-found-page/not-found';
 import {ROUTES} from '../../const';
 
 const App = () => {

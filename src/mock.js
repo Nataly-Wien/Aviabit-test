@@ -23,7 +23,7 @@ const standardData = {  // Эталонные данные
   }
 };
 
-const DATA_LENGTH = 100;
+const DATA_LENGTH = 1000;
 
 const DATE_MIN = 1483218000000;  //01.01.2017
 const DATE_MAX = 1704056340000;  //31.12.2023
@@ -163,7 +163,7 @@ const getRound = (num, limit = 100) => Math.floor(num / limit) * limit;
 
 const getMock = () => {
 
-  const randomDate = Math.random() < 0.5 ? getRandomInRange(DATE_MAX, DATE_MIN) : getRandomInRange(DATE_PLAN_MAX, DATE_PLAN_MIN);
+  const randomDate = Math.random() < 0.9 ? getRandomInRange(DATE_MAX, DATE_MIN) : getRandomInRange(DATE_PLAN_MAX, DATE_PLAN_MIN);
   const randomAirport = getRandomInRange(AIRPORTS.length) - 1;
 
   const timeFlightStandard = standardData[`timeFlight`];
@@ -200,3 +200,5 @@ export const getMocks = () => {
 
   return data;
 };
+
+export const mocks = getMocks();

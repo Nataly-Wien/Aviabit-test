@@ -1,7 +1,13 @@
 @import "../../sass/variables.scss";
 
 .header {
-  padding: 40px 0;
   color: $color-default-white;
   background-color: $color-lochmara;
+
+  &__logo-wrapper {
+    svg {
+      width: 100px;
+      height: 100px;
+    }
+  }
 }

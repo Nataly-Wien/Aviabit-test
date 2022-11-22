@@ -1,18 +1,16 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchData} from '../../../store/data-slice';
+import {fetchData} from '../../../store/data/data-slice';
 import Header from '../../header/header';
-import {getFlightsYears} from '../../../common';
-
+import Statistic from '../../statistic/statistic';
+import {MESSAGES} from '../../../const';
 
 const StatisticPage = () => {
   const dispatch = useDispatch();
-  const myData = useSelector((state) => state.data.flights);
-  console.log(myData, getFlightsYears(myData));
+  const isLoading = useSelector((state) => state.data.loading);
 
   useEffect(() => {
     dispatch(fetchData());
-
   }, [dispatch]);
 
   return (
@@ -20,7 +18,7 @@ const StatisticPage = () => {
       <Header />
       <main className="page__main-section container">
         <h1 className="page__title">Статистика</h1>
-        {/* <Statistic /> */}
+        {isLoading ? <p>{MESSAGES.loading}</p> : <Statistic />}
       </main>
     </div >
   );

@@ -1,23 +1,28 @@
 import dayjs from 'dayjs';
 
-export const adaptDataToClient = (flight) => {
-  const clientFlight = {
-    ...flight,
-    timestamp: dayjs(flight.dateFlight).valueOf(),
-  };
+const getSortedFlights = (flights) => flights.sort((a, b) => dayjs(a.dateFlight) - dayjs(b.dateFlight) || a.type - b.type);
+const getFlightsYears = (flights) => Array.from(new Set(flights.map((it) => dayjs(it.dateFlight).year()))).sort((a, b) => a - b);
 
-  return clientFlight;
+export const getStructuredData = (flights) => {
+  const years = getFlightsYears(flights);
+  const data = {};
+
+  years.forEach((year) => {
+    data[year] = [];
+
+    for (let month = 0; month < 12; month++) {
+      const monthFlights = flights.filter((flight) => dayjs(flight.dateFlight).year() === year && dayjs(flight.dateFlight).month() === month)
+      data[year].push(getSortedFlights(monthFlights));
+    }
+  });
+
+  return data;
 };
 
-export const getFlightsYearsInterval = (flights) => {
-  const flightDates = flights.map((it) => it.timestamp / 1000);
-
-  return {
-    firstYear: dayjs.unix(Math.min(...flightDates)).year(),
-    lastYear: dayjs.unix(Math.max(...flightDates)).year(),
-  }
-};
-
-export const getFlightsYears = (flights) => Array.from(new Set(flights.map((it) => dayjs(it.timestamp).year())));
-
-export const getSortedFlights = (flights) => flights.map((it) => it.timestamp).sort((a, b) => a.timestamp - b.timestamp);
+export const getTimeStatistic = (flights) => flights.reduce((sum, it) => ({
+  timeFlight: sum.timeFlight + it.timeFlight,
+  timeWork: sum.timeWork + it.timeWork,
+}), {
+  timeFlight: 0,
+  timeWork: 0,
+});

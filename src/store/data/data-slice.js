@@ -1,10 +1,11 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {getAsyncMockData} from './mockAPI';
-import {adaptDataToClient} from '../common';
-import {MESSAGES} from '../const';
+import {getAsyncMockData} from '../mockAPI';
+import {getStructuredData} from '../../common';
+import {MESSAGES} from '../../const';
 
 const initialState = {
   flights: [],
+  structuredFlights: {},
   loading: false,
   error: ``,
 };
@@ -12,7 +13,7 @@ const initialState = {
 export const fetchData = createAsyncThunk(`data/fetchData`,
   async (_, {rejectWithValue}) => {
     try {
-      const response = getAsyncMockData().then((data) => JSON.parse(data).map(adaptDataToClient));
+      const response = getAsyncMockData().then((data) => JSON.parse(data));
 
       if (!response) {
         throw new Error(MESSAGES.noData);
@@ -38,14 +39,15 @@ const dataSlice = createSlice({
     builder
       .addCase(fetchData.fulfilled, (state, action) => {
         state.flights = action.payload;
+        state.structuredFlights = getStructuredData(action.payload);
         state.loading = false;
         state.error = ``;
       })
-      .addMatcher(fetchData.pending, (state) => {
+      .addCase(fetchData.pending, (state) => {
         state.loading = true;
         state.error = ``;
       })
-      .addMatcher(fetchData.rejected, (state, action) => {
+      .addCase(fetchData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
