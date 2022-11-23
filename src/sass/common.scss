@@ -32,6 +32,11 @@ a {
   color: $color-default-black;
 }
 
+button {
+  cursor: pointer;
+  user-select: none;
+}
+
 .root {
   height: 100%;
 }

@@ -1,11 +1,12 @@
 // Цвета
-$color-transparent:      rgba(255, 255, 255, 0);
 $color-default-black:    #000000;
 $color-tangaroa:         #132639;
 $color-venice-blue:      #29527a;
 $color-lochmara:         #336699;
 $color-air-force-blue:   #5c85ad;
 $color-polo-blue:        #7d9dbd;
+$color-light-slate-grey: #738699;
+$color-grey-chateau:     #97a1aa;
 $color-alice-blue:       #eef3f6;
 $color-default-white:    #ffffff;
 
@@ -17,7 +18,7 @@ $fz-default: 16px;
 // Анимация
 
 $tf-default: ease;
-$trans-default: 0.3s $tf-default;
+$transition-default: 0.3s $tf-default;
 
 // Вьюпорты
 $vp-320: 320px;

@@ -1,24 +1,20 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {fetchData} from '../../../store/data/data-slice';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import Header from '../../header/header';
 import Statistic from '../../statistic/statistic';
-import {MESSAGES} from '../../../const';
+import Loader from '../../loader/loader';
 
 const StatisticPage = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.data.loading);
-
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
+  const isLoading = useSelector((state) => state.data.isLoading);
+  const isError = useSelector((state) => state.data.isError);
+  const errMessage = useSelector((state) => state.data.errorMessage)
 
   return (
     <div className="page">
       <Header />
       <main className="page__main-section container">
         <h1 className="page__title">Статистика</h1>
-        {isLoading ? <p>{MESSAGES.loading}</p> : <Statistic />}
+        {isLoading ? <Loader /> : isError ? <p className="page__message">{errMessage}</p> : <Statistic />}
       </main>
     </div >
   );
