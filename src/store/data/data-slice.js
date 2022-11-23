@@ -6,8 +6,9 @@ import {MESSAGES} from '../../const';
 const initialState = {
   flights: [],
   structuredFlights: {},
-  loading: false,
-  error: ``,
+  isLoading: false,
+  isError: false,
+  errorMessage: ``,
 };
 
 export const fetchData = createAsyncThunk(`data/fetchData`,
@@ -40,16 +41,19 @@ const dataSlice = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         state.flights = action.payload;
         state.structuredFlights = getStructuredData(action.payload);
-        state.loading = false;
-        state.error = ``;
+        state.isLoading = false;
+        state.isError = false;
+        state.errorMessage = ``;
       })
       .addCase(fetchData.pending, (state) => {
-        state.loading = true;
-        state.error = ``;
+        state.isLoading = true;
+        state.isError = false;
+        state.errorMessage = ``;
       })
       .addCase(fetchData.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.isLoading = false;
+        state.isError = true;
+        state.errorMessage = action.payload;
       })
   },
 });
