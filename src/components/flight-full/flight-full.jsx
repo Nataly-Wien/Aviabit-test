@@ -1,75 +1,68 @@
+import './flight-full.scss';
 import React from 'react';
 import dayjs from "dayjs";
 import {flightTypesValidation} from '../../types-validation/flight-type-validation';
 
 const FlightFull = ({flight}) => {
   return (
-    <div>
-      <div className="flight-full__info-wrapper">
-        <span className="flight-full__">
-          {dayjs(flight.dateFlight).format('DD.MM.YY')}
+    <div className="flight-full">
+      <p className="flight-full__wrapper">
+        {flight.type ? <span className="flight-full__data flight-full__data--plan">По&nbsp;плану&nbsp;</span> : null}
+        на&nbsp;<span className="flight-full__data">
+          {dayjs(flight.dateFlight).format('DD.MM.YY')},&nbsp;&nbsp;
         </span>
-        <span className="flight-full__">
+        <span className="flight-full__data">
           {dayjs(flight.dateFlight).format('HH:mm')}
         </span>
-        <span className="flight-full__">
+      </p>
+      <p className="flight-full__wrapper">рейс&nbsp;
+        <span className="flight-full__data">
           {flight.flight}
-        </span>
-        <span className="flight-full__">
+        </span>,&ensp;на&nbsp;
+        <span className="flight-full__data">
           {flight.plnType}
-        </span>
-        <span className="flight-full__">
+        </span>&ensp;бортовой&nbsp;номер&nbsp;
+        <span className="flight-full__data">
           {flight.pln}
         </span>
-      </div>
-      <div className="flight-full__data-wrapper">
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.timeFlight}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.timeBlock}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.timeNight}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.timeBiologicalNight}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.timeWork}
-        </span>
-      </div>
-      <div className="flight-full__airport-wrapper">
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.takeoff.name}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
+      </p>
+      <p className="flight-full__wrapper">из&nbsp;
+        <span className="flight-full__data">
+          {flight.takeoff.name}&ensp;
+        </span>шир.&nbsp;
+        <span className="flight-full__data">
           {flight.takeoff.lat}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.takeoff.long}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
-          {flight.landing.name}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
+        </span>,&nbsp;&nbsp;дол.&nbsp;
+        <span className="flight-full__data">
+          {flight.takeoff.long}&ensp;
+        </span>в&nbsp;
+        <span className="flight-full__data">
+          {flight.landing.name}&ensp;
+        </span>шир.&nbsp;
+        <span className="flight-full__data">
           {flight.landing.lat}
-        </span>
-        <span className="flight-full__">
-          <svg></svg>
+        </span>,&nbsp;&nbsp;дол.&nbsp;
+        <span className="flight-full__data">
           {flight.landing.long}
         </span>
-      </div>
+      </p>
+      <p className="flight-full__wrapper">время&nbsp;налета&nbsp;-&nbsp;
+        <span className="flight-full__data">
+          {flight.timeFlight},&ensp;
+        </span>полетное&nbsp;-&nbsp;
+        <span className="flight-full__data">
+          {flight.timeBlock},&ensp;
+        </span>ночное&nbsp;летное&nbsp;-&nbsp;
+        <span className="flight-full__data">
+          {flight.timeNight},&ensp;
+        </span>биологичекая&nbsp;ночь&nbsp;-&nbsp;
+        <span className="flight-full__data">
+          {flight.timeBiologicalNight},&ensp;
+        </span>рабочее&nbsp;время&nbsp;-&nbsp;
+        <span className="flight-full__data">
+          {flight.timeWork}
+        </span>
+      </p>
     </div>
   );
 };

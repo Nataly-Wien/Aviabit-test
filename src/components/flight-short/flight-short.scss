@@ -8,6 +8,15 @@
 
   @include vp-1023 {
     flex-wrap: wrap;
+    background-color: $color-default-white;
+  }
+
+  &--plan {
+    color: $color-light-slate-grey;
+
+    .flight {
+      color: $color-grey-chateau;
+    }
   }
 
   &__wrapper {

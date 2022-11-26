@@ -6,7 +6,7 @@ import {flightTypesValidation} from '../../types-validation/flight-type-validati
 
 const FlightShort = ({flight}) => {
   return (
-    <div className="flight-short">
+    <div className={`flight-short ${flight.type ? ` flight-short--plan` : ``}`}>
       <div className="flight-short__wrapper flight-short__wrapper--info">
         <span className="flight-short__data flight-date">
           {dayjs(flight.dateFlight).format('DD.MM.YY')}

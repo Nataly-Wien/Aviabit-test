@@ -49,6 +49,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    overflow: hidden;
   }
 
   &__item {
@@ -57,16 +58,8 @@
     align-items: center;
     border-bottom: 1px solid $color-pattens-blue;
 
-    &--plan {
-      color: $color-light-slate-grey;
-    }
-
     &--odd {
       background-color: $color-azure;
-
-      @include vp-1023 {
-        background-color: transparent;
-      }
     }
   }
 }

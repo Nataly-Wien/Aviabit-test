@@ -16,7 +16,7 @@ const DetailPage = () => {
     <div className="page">
       <Header />
       <main className="page__main-section container">
-        <h1 className="page__title">{`Детальная информация за ${period.length > 1 ? `${MONTHS[period[1]]} ` : ``}${period[0]} год${period.length > 1 ? `а` : ``}`}</h1>
+        <h1 className="page__title">Детальная информация за&nbsp;{`${period.length > 1 ? `${MONTHS[period[1]]} ` : ``}${period[0]}`}&nbsp;год{`${period.length > 1 ? `а` : ``}`}</h1>
         <Detail period={period} />
       </main>
     </div >
