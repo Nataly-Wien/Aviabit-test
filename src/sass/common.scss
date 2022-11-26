@@ -57,15 +57,23 @@ button {
   --container-offset: 60px;
 
   width: 100%;
-  max-width: $vp-1440;
+  max-width: 1870px;
   margin: 0 auto;
   padding: 0 var(--container-offset);
 
-  @include vp-1023 {
+  @include vp-1279 {
     --container-offset: 40px;
+  }
+
+  @include vp-1023 {
+    --container-offset: 30px;
   }
 
   @include vp-767 {
     --container-offset: 15px;
+  }
+
+  @include vp-374 {
+    --container-offset: 12px;
   }
 }

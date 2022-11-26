@@ -7,7 +7,7 @@ import Loader from '../../loader/loader';
 const StatisticPage = () => {
   const isLoading = useSelector((state) => state.data.isLoading);
   const isError = useSelector((state) => state.data.isError);
-  const errMessage = useSelector((state) => state.data.errorMessage)
+  const errMessage = useSelector((state) => state.data.errorMessage);
 
   return (
     <div className="page">

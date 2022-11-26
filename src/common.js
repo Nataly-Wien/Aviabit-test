@@ -39,3 +39,15 @@ export const getPlanStatistic = (flights) => flights.filter((item) => item.type 
   timeWork: 0,
   type: 1,
 });
+
+export const isLocalStorageAvailable = () => {
+  const test = 'test';
+
+  try {
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};

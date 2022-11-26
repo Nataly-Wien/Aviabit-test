@@ -18,8 +18,7 @@ const Statistic = () => {
   return (
     <section className="statistic">
       <h2 className="visually-hidden">Общая статистика по годам и месяцам</h2>
-      {/* <Swiper modules={[Navigation, A11y]} navigation breakpoints={SLIDER_BREAKPOINTS} a11y={SLIDER_A11Y}> */}
-      <Swiper modules={[Navigation, A11y]} slidesPerView={`auto`} breakpoints={SLIDER_BREAKPOINTS} navigation a11y={SLIDER_A11Y}>
+      <Swiper modules={[Navigation, A11y]} slidesPerView={`auto`} breakpoints={SLIDER_BREAKPOINTS} navigation a11y={SLIDER_A11Y} preventClicks={false} preventClicksPropagation={false}>
         {years.map((year) => {
           return (
             <SwiperSlide key={year}>

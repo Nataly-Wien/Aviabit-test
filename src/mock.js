@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import {isLocalStorageAvailable} from './common';
 
 const standardData = {  // Эталонные данные
   "dateFlight": "2017-06-21T19:00:00.000Z", // Дата рейса
@@ -26,7 +27,7 @@ const standardData = {  // Эталонные данные
 const DATA_LENGTH = 1000;
 
 const DATE_MIN = 1483218000000;  //01.01.2017
-const DATE_MAX = 1704056340000;  //31.12.2023
+const DATE_MAX = 1696107600000;  //30.09.2023
 const DATE_PLAN_MIN = 1654030800000;  //01.06.2022  - с этой даты по вчерашний день генерируются и плановые, и фактические данные
 const DATE_PLAN_MAX = dayjs().valueOf() - 24 * 3600 * 1000;  // Вчера
 
@@ -97,7 +98,7 @@ const AIRPORTS = [
     long: 55.364444,
   },
   {
-    name: `Лондон(Хитроу,)`,
+    name: `Лондон(Хитроу)`,
     lat: 51.477222,
     long: 0.461389,
   },
@@ -191,14 +192,26 @@ const getMock = () => {
   }
 };
 
-export const getMocks = () => {
+const getMocks = () => {
   const data = [];
 
   for (let i = 0; i < DATA_LENGTH; i++) {
     data.push(getMock())
   }
 
-  return data;
+  return JSON.stringify(data);
 };
 
-export const mocks = getMocks();
+const saveMocks = () => {
+  if (isLocalStorageAvailable) {
+    const keyPresent = localStorage.getItem(`flights`);
+
+    if (!keyPresent) {
+      localStorage.setItem(`flights`, getMocks());
+    }
+  }
+};
+
+saveMocks();
+
+export const mocks = isLocalStorageAvailable() ? localStorage.getItem(`flights`) : getMocks();

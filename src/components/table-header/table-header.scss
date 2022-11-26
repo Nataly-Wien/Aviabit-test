@@ -1,0 +1,169 @@
+@import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
+
+.table-header {
+  position: sticky;
+  top: 0;
+  padding: 3px 0;
+  display: flex;
+  background-color: $color-pattens-blue;
+  border-bottom: 1px solid $color-pattens-blue;
+
+  @include vp-1899 {
+    padding: 3px 10px 3px 28px;
+  }
+
+  @include vp-1023 {
+    display: none;
+  }
+
+  &__cell {
+    padding: 0 6px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    white-space: nowrap;
+
+    @include vp-1279 {
+      font-size: 14px;
+    }
+  }
+}
+
+.flight-date {
+  width: 80px;
+
+  @include vp-1023 {
+    font-weight: 700;
+  }
+
+  @include vp-374 {
+    width: 75px;
+  }
+}
+
+.flight-time {
+  width: 70px;
+
+  @include vp-1279 {
+    width: 60px;
+  }
+
+  @include vp-1023 {
+    font-weight: 700;
+  }
+
+  @include vp-374 {
+    width: 55px;
+  }
+}
+
+.flight {
+  width: 90px;
+
+  @include vp-1279 {
+    width: 80px;
+  }
+
+  @include vp-374 {
+    width: 70px;
+    color: $color-venice-blue;
+  }
+}
+
+.pln-type {
+  width: 120px;
+
+  @include vp-1279 {
+    width: 110px;
+    flex-grow: 1;
+  }
+
+  @include vp-1023 {
+    flex-grow: 0;
+  }
+
+  @media (max-width: 500px) {
+    width: 80px;
+    flex-grow: 1;
+  }
+
+  @include vp-374 {
+    width: 70px;
+    flex-grow: 0;
+  }
+}
+
+.pln,
+.time-flight,
+.time-block,
+.time-night,
+.time-biological-night,
+.time-work {
+  width: 80px;
+
+  @include vp-1279 {
+    width: 70px;
+  }
+
+  @include vp-1023 {
+    width: 100px;
+  }
+
+  @include vp-374 {
+    width: 90px;
+  }
+}
+
+.pln {
+  @include vp-1279 {
+    display: none;
+  }
+
+  @include vp-1023 {
+    display: block;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
+.takeoff-name,
+.landing-name {
+  width: 225px;
+
+  @include vp-1899 {
+    flex-grow: 1;
+  }
+
+  @include vp-1439 {
+    width: 140px;
+  }
+
+  @include vp-1279 {
+    width: 110px;
+  }
+
+  @include vp-1023 {
+    width: 220px;
+  }
+
+  @include vp-767 {
+    width: 140px;
+  }
+
+  @include vp-374 {
+    width: 120px;
+  }
+}
+
+.takeoff-lat,
+.takeoff-long,
+.landing-lat,
+.landing-long {
+  width: 110px;
+
+  @include vp-1899 {
+    display: none;
+  }
+}

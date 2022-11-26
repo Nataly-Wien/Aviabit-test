@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import StatisticPage from '../pages/statistic-page/statistic-page';
+import DetailPage from '../pages/detail-page/detail-page';
 import NotFoundPage from '../pages/not-found-page/not-found';
 import {fetchData} from '../../store/data/data-slice';
 import {ROUTES} from '../../const';
@@ -16,7 +17,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={ROUTES.statistic} element={<StatisticPage />} />
+        <Route path={ROUTES.statistic} element={<StatisticPage />}></Route>
+        <Route path={ROUTES.detail} element={<DetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

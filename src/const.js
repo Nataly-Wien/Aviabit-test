@@ -5,10 +5,19 @@ export const MESSAGES = {
 
 export const ROUTES = {
   statistic: '/',
-  detail: '/:period',
+  detailPage: '/in/',
+  detail: '/in/:id',
+  notFound: `/404`,
 };
 
-export const MONTHS = [`янв`, `фев`, `мар`, `апр`, `май`, `июн`, `июл`, `авг`, `сен`, `окт`, `ноя`, `дек`];
+export const ROUTE_PARAMS_SEPARATOR = `-`;
+
+export const MONTHS = [`январь`, `февраль`, `март`, `апрель`, `май`, `июнь`, `июль`, `август`, `сентябрь`, `октябрь`, `ноябрь`, `декабрь`];
+
+// export const PERIOD_TYPE = {
+//   year: `year`,
+//   month: `month`,
+// };
 
 // export const SLIDER_BREAKPOINTS = {
 //   320: {
@@ -57,4 +66,23 @@ export const SLIDER_A11Y = {
   lastSlideMessage: 'Это последний слайд',
   prevSlideMessage: 'Предыдущий слайд',
   nextSlideMessage: 'Следующий слайд',
+};
+
+export const TABLE_HEADER_DATA = {
+  "flight-date": "Дата",
+  "flight-time": "Время",
+  "flight": "Рейс",
+  "pln-type": "Тип судна",
+  "pln": "Борт №",
+  "time-flight": "Налет",
+  "time-block": "Полетное",
+  "time-night": "Ночное",
+  "time-biological-night": "Био-ночь",
+  "time-work": "Рабочее",
+  "takeoff-name": "Вылет",
+  "takeoff-lat": "Широта",
+  "takeoff-long": "Долгота",
+  "landing-name": "Посадка",
+  "landing-lat": "Широта",
+  "landing-long": "Долгота",
 };
