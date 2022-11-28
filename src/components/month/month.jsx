@@ -21,7 +21,7 @@ const Month = ({flights, monthTitle}) => {
       {isFullView && <ul className="month__list">
         {flights.map((it, index) => {
           return (
-            <li className={`month__item${index % 2 ? ` month__item--odd` : ``}`} key={`${it.dateFlight}-${it.type}-${index}`}>
+            <li className={`month__item flight${index % 2 ? ` month__item--odd` : ``}`} key={`${it.dateFlight}-${it.type}-${index}`}>
               <Flight flight={it} />
             </li>
           )

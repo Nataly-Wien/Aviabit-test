@@ -14,30 +14,6 @@ export const ROUTE_PARAMS_SEPARATOR = `-`;
 
 export const MONTHS = [`январь`, `февраль`, `март`, `апрель`, `май`, `июнь`, `июль`, `август`, `сентябрь`, `октябрь`, `ноябрь`, `декабрь`];
 
-// export const PERIOD_TYPE = {
-//   year: `year`,
-//   month: `month`,
-// };
-
-// export const SLIDER_BREAKPOINTS = {
-//   320: {
-//     slidesPerView: 1,
-//     spaceBetween: 15,
-//   },
-//   650: {
-//     slidesPerView: 1.5,
-//     spaceBetween: 20,
-//   },
-//   1100: {
-//     slidesPerView: 2,
-//     spaceBetween: 40,
-//   },
-//   1440: {
-//     slidesPerView: 3,
-//     spaceBetween: 30,
-//   }
-// };
-
 export const SLIDER_BREAKPOINTS = {
   320: {
     spaceBetween: 10,
@@ -51,12 +27,12 @@ export const SLIDER_BREAKPOINTS = {
   },
   768: {
     spaceBetween: 15,
-    slidesOffsetAfter: 40,
+    slidesOffsetAfter: 30,
     initialSlide: 1,
   },
   1024: {
     spaceBetween: 30,
-    slidesOffsetAfter: 40,
+    slidesOffsetAfter: 30,
     initialSlide: 0,
   }
 };
@@ -86,3 +62,18 @@ export const TABLE_HEADER_DATA = {
   "landing-lat": "Широта",
   "landing-long": "Долгота",
 };
+
+export const MENU_ITEMS = [
+  {
+    name: `Пункт меню 1`,
+    link: `#`,
+  },
+  {
+    name: `Пункт меню 2`,
+    link: `#`,
+  },
+  {
+    name: `Пункт меню 3`,
+    link: `#`,
+  },
+];

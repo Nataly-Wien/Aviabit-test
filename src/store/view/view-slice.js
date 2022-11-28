@@ -5,6 +5,7 @@ const initialState = {
   flightFilter: ``,
   dateMinFilter: ``,
   dateMaxFilter: ``,
+  isMobileMenuOpen: false,
 };
 
 const viewSlice = createSlice({
@@ -23,9 +24,12 @@ const viewSlice = createSlice({
     setDateMaxFilter(state, action) {
       state.dateMaxFilter = action.payload;
     },
+    setMobileMenuOpen(state, action) {
+      state.isMobileMenuOpen = action.payload;
+    }
   },
 });
 
-export const {setStatisticGridView, setFlightFilter, setDateMinFilter, setDateMaxFilter} = viewSlice.actions;
+export const {setStatisticGridView, setFlightFilter, setDateMinFilter, setDateMaxFilter, setMobileMenuOpen} = viewSlice.actions;
 
 export default viewSlice.reducer;
