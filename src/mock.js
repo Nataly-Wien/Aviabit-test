@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import {isLocalStorageAvailable} from './common';
 
 const standardData = {  // Эталонные данные
   "dateFlight": "2017-06-21T19:00:00.000Z", // Дата рейса
@@ -26,20 +27,19 @@ const standardData = {  // Эталонные данные
 const DATA_LENGTH = 1000;
 
 const DATE_MIN = 1483218000000;  //01.01.2017
-const DATE_MAX = 1704056340000;  //31.12.2023
+const DATE_MAX = 1696107600000;  //30.09.2023
 const DATE_PLAN_MIN = 1654030800000;  //01.06.2022  - с этой даты по вчерашний день генерируются и плановые, и фактические данные
 const DATE_PLAN_MAX = dayjs().valueOf() - 24 * 3600 * 1000;  // Вчера
 
 const TIME_ROUND_INTERVAL = 5 * 60 * 1000;  // для округления случ. времени рейса до 5 мин
 const DATE_PLAN_INTERVAL = 180 * 24 * 3600 * 1000;  // для получения плановых и фактических значений за последние полгода
-
-const PLAN_TYPES_NUMBER = 7;
 const PLAN_TYPES = [`SSJ-100`, `A-320`, `A-321`, `A-330-200`, `A-330-300`, `B-737-800`, `B-777-300ER`];
 
-const AC_NUMBER = 10;
+
 const AC_REGISTRATIONS = [`XXXAK`, `XXXAA`, `XXXOP`, `XXXAE`, `XXXAC`, `XXXTA`, `XXXTM`, `XXXMA`, `XXXMP`, `XXXEO`];
 
-const FLIGHT_PREFIX = `AB-`;
+const FLIGHT_PREFIX = [`AB-`, `CD-`, `EF-`];
+const FLIGHT_NUMBER_AMOUNT = 5;
 const FLIGHT_MAX_NUM = 9999;
 const FLIGHT_TEMPLATE = `0000`;
 
@@ -97,7 +97,7 @@ const AIRPORTS = [
     long: 55.364444,
   },
   {
-    name: `Лондон(Хитроу,)`,
+    name: `Лондон(Хитроу)`,
     lat: 51.477222,
     long: 0.461389,
   },
@@ -161,6 +161,12 @@ const AIRPORTS = [
 const getRandomInRange = (max, min = 1) => Math.floor(Math.random() * (max - min + 1)) + min;
 const getRound = (num, limit = 100) => Math.floor(num / limit) * limit;
 
+const flightIndexes = [];
+
+for (let i = 0; i < FLIGHT_NUMBER_AMOUNT; i++) {
+  flightIndexes.push((FLIGHT_TEMPLATE + getRandomInRange(FLIGHT_MAX_NUM)).slice(-FLIGHT_TEMPLATE.length)); // Четырехзначный с ведущими нулями
+};
+
 const getMock = () => {
 
   const randomDate = Math.random() < 0.9 ? getRandomInRange(DATE_MAX, DATE_MIN) : getRandomInRange(DATE_PLAN_MAX, DATE_PLAN_MIN);
@@ -177,9 +183,9 @@ const getMock = () => {
 
   return {
     "dateFlight": new Date(Math.floor(randomDate / TIME_ROUND_INTERVAL) * TIME_ROUND_INTERVAL).toISOString(), // Дата-время рейса, округление до 5 мин
-    "flight": FLIGHT_PREFIX + (FLIGHT_TEMPLATE + getRandomInRange(FLIGHT_MAX_NUM)).slice(-FLIGHT_TEMPLATE.length),  // Четырехзначный с ведущими нулями
-    "plnType": PLAN_TYPES[getRandomInRange(PLAN_TYPES_NUMBER) - 1],  // Из списка
-    "pln": AC_REGISTRATIONS[getRandomInRange(AC_NUMBER) - 1],  // Из списка
+    "flight": FLIGHT_PREFIX[getRandomInRange(FLIGHT_PREFIX.length) - 1] + flightIndexes[getRandomInRange(flightIndexes.length - 1)],
+    "plnType": PLAN_TYPES[getRandomInRange(PLAN_TYPES.length) - 1],  // Из списка
+    "pln": AC_REGISTRATIONS[getRandomInRange(AC_REGISTRATIONS.length) - 1],  // Из списка
     "timeFlight": getRound(getRandomInRange(timeFlightStandard + timeFlightStandard * FLIGHT_TIME_STANDARD_DIVERGENCE, timeFlightStandard - timeFlightStandard * FLIGHT_TIME_STANDARD_DIVERGENCE)),
     "timeBlock": getMockFlightTime(standardData[`timeBlock`]),
     "timeNight": getMockFlightTime(standardData[`timeNight`]),
@@ -191,14 +197,26 @@ const getMock = () => {
   }
 };
 
-export const getMocks = () => {
+const getMocks = () => {
   const data = [];
 
   for (let i = 0; i < DATA_LENGTH; i++) {
     data.push(getMock())
   }
 
-  return data;
+  return JSON.stringify(data);
 };
 
-export const mocks = getMocks();
+const saveMocks = () => {
+  if (isLocalStorageAvailable) {
+    const keyPresent = localStorage.getItem(`flights`);
+
+    if (!keyPresent) {
+      localStorage.setItem(`flights`, getMocks());
+    }
+  }
+};
+
+saveMocks();
+
+export const mocks = isLocalStorageAvailable() ? localStorage.getItem(`flights`) : getMocks();

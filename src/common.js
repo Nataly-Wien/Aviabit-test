@@ -4,6 +4,18 @@ const getSortedFlights = (flights) => flights.sort((a, b) => dayjs(a.dateFlight)
 
 export const getFlightsYears = (flights) => Array.from(new Set(flights.map((it) => dayjs(it.dateFlight).year()))).sort((a, b) => a - b);
 
+// const alphanumericSort = (a, b) => {
+//   if (a.replace(/[0-9-]/g, ``) === b.replace(/[0-9-]/g, ``)) {
+//     return a.replace(/[a-z-]/ig, ``) - b.replace(/[a-z-]/ig, ``)
+//   } else {
+//     return a.replace(/[0-9-]/g, ``) > b.replace(/[0-9-]/g, ``) ? 1 : -1;
+//   }
+// };
+
+const alphanumericSort = (a, b) => a.replace(/[0-9-]/g, ``) === b.replace(/[0-9-]/g, ``) ? a.replace(/[a-z-]/ig, ``) - b.replace(/[a-z-]/ig, ``) : a.replace(/[0-9-]/g, ``) > b.replace(/[0-9-]/g, ``) ? 1 : -1;
+
+export const getFlightsNumbers = (flights) => Array.from(new Set(flights.map((it) => it.flight))).sort((a, b) => alphanumericSort(a, b));
+
 export const getStructuredData = (flights) => {
   const years = getFlightsYears(flights);
   const data = {};
@@ -18,6 +30,25 @@ export const getStructuredData = (flights) => {
   });
 
   return data;
+};
+
+export const getMinMaxDates = (flights) => {
+  const date = {
+    min: dayjs().valueOf(),
+    max: dayjs().valueOf(),
+  };
+
+  flights.forEach((it) => {
+    if (dayjs(it.dateFlight) > date.max) {
+      date.max = dayjs(it.dateFlight);
+    }
+
+    if (dayjs(it.dateFlight) < date.min) {
+      date.min = dayjs(it.dateFlight);
+    }
+  });
+
+  return date;
 };
 
 export const getTimeStatistic = (flights) => flights.filter((item) => item.type === 0).reduce((sum, it) => ({
@@ -39,3 +70,15 @@ export const getPlanStatistic = (flights) => flights.filter((item) => item.type 
   timeWork: 0,
   type: 1,
 });
+
+export const isLocalStorageAvailable = () => {
+  const test = 'test';
+
+  try {
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};

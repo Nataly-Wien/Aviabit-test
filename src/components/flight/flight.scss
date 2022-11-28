@@ -1,0 +1,38 @@
+@import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
+
+.flight {
+  &__btn {
+    display: none;
+    padding: 8px;
+    align-self: stretch;
+    background-color: $color-spindle;
+    color: $color-alice-blue;
+    border: none;
+    border-radius: 3px;
+    transition: background-color $transition-default;
+    cursor: pointer;
+
+    @include vp-1899 {
+      display: block;
+    }
+
+    @media (max-width: 500px) {
+      padding: 4px;
+    }
+
+    &:hover {
+      background-color: $color-spindle-light;
+    }
+
+    svg {
+      width: 12px;
+      height: 9px;
+    }
+
+    &--full svg {
+      transform: rotate(180deg);
+    }
+  }
+
+}
