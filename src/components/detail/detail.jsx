@@ -1,5 +1,7 @@
 import './detail.scss';
 import React from 'react';
+import dayjs from 'dayjs';
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {selectStructuredFlights} from '../../store/data/data-selectors';
@@ -11,8 +13,16 @@ import {MONTHS, ROUTES} from '../../const';
 
 const Detail = ({period}) => {
   const navigate = useNavigate();
+
+  dayjs.extend(customParseFormat);
+
+  const dateMin = useSelector((state) => state.view.dateMinFilter);
+  const dateMax = useSelector((state) => state.view.dateMaxFilter);
+  const flightFilter = useSelector((state) => state.view.flightFilter);
   const allFlights = useSelector(selectStructuredFlights);
+
   let flights = [];
+  let filteredFlights = [];
 
   if (Object.keys(allFlights).length) {
     const yearFlights = allFlights[period[0]];
@@ -28,14 +38,18 @@ const Detail = ({period}) => {
       navigate(ROUTES.notFound);
       return;
     }
+
+    filteredFlights = flights.map(monthFlights => monthFlights
+      .filter((it) => flightFilter ? it.flight === flightFilter : it)
+      .filter((it) => dateMin || dateMax ? dayjs(it.dateFlight) >= dayjs(dateMin, `DD.MM.YYYY`) && dayjs(it.dateFlight) <= dayjs(dateMax, `DD.MM.YYYY`) : it));
   }
 
   return (
     <div className="detail">
-      {flights.length === 0 ? <Loader /> :
+      {filteredFlights.length === 0 ? <Loader /> :
         <ul className="detail__list">
           <TableHeader />
-          {flights.map((it, index) => {
+          {filteredFlights.map((it, index) => {
             if (it.length) {
               return (
                 <li className="detail__item" key={MONTHS[index]}>
@@ -53,12 +67,7 @@ const Detail = ({period}) => {
 };
 
 Detail.propTypes = {
-  period: PropTypes.arrayOf(PropTypes.oneOfType(
-    [
-      PropTypes.string,
-      PropTypes.number,
-    ]
-  )),
+  period: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 
 export default Detail;

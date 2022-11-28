@@ -1,11 +1,9 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {getAsyncMockData} from '../mockAPI';
-// import {getStructuredData} from '../../common';
 import {MESSAGES} from '../../const';
 
 const initialState = {
   flights: [],
-  // structuredFlights: {},
   isLoading: false,
   isError: false,
   errorMessage: ``,
@@ -40,7 +38,6 @@ const dataSlice = createSlice({
     builder
       .addCase(fetchData.fulfilled, (state, action) => {
         state.flights = action.payload;
-        // state.structuredFlights = getStructuredData(action.payload);
         state.isLoading = false;
         state.isError = false;
         state.errorMessage = ``;

@@ -23,7 +23,7 @@ const Header = () => {
           </svg>
         </div>
         {/* <div className={`header__menu${!isMobileMenuOpen ? ` header__menu--hidden` : ``}`}>
-          {isMobileMenuOpen && <button className={"header__close-button"} type="button">
+          {isMobileMenuOpen && <button className={"header__close-btn"} type="button">
             <span className="visually-hidden">Закрыть меню</span>
           </button>}
           <MainMenu />

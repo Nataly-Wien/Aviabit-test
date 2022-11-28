@@ -3,6 +3,7 @@
 
 .flight {
   &__btn {
+    display: none;
     padding: 8px;
     align-self: stretch;
     background-color: $color-spindle;
@@ -10,7 +11,7 @@
     border: none;
     border-radius: 3px;
     transition: background-color $transition-default;
-    display: none;
+    cursor: pointer;
 
     @include vp-1899 {
       display: block;

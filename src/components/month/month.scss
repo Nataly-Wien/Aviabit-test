@@ -30,6 +30,7 @@
     color: $color-alice-blue;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
     transition: background-color $transition-default;
 
     @include vp-1023 {

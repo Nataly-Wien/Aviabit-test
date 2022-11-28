@@ -21,6 +21,16 @@
     }
   }
 
+  &__title-wrapper {
+    display: flex;
+    justify-content: space-around;
+
+    @include vp-767 {
+      margin-bottom: 4px;
+      justify-content: space-between;
+    }
+  }
+
   &__title {
     margin: 0;
     margin-bottom: 10px;
@@ -34,9 +44,14 @@
 
     @include vp-767 {
       margin-bottom: 6px;
+      margin-right: 15px;
       font-size: 24px;
       line-height: 1.2;
       text-transform: uppercase;
+    }
+
+    @include vp-374 {
+      font-size: 22px;
     }
 
     &--not-found {
@@ -48,5 +63,68 @@
     margin: auto;
     font-size: 20px;
     line-height: 1.5;
+  }
+
+  &__btn-wrapper {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 400px) {
+      flex-direction: column;
+    }
+  }
+
+  &__btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: $color-default-black;
+    border: 1px solid $color-pattens-blue;
+    border-radius: 5px;
+    cursor: pointer;
+
+    @media (max-width: 890px) {
+      display: none;
+
+      &--detail {
+        display: block;
+      }
+    }
+
+    @include vp-767 {
+      width: 35px;
+      height: 35px;
+    }
+
+    @include has-hover {
+      opacity: 0.7;
+    }
+
+    &:disabled {
+      pointer-events: none;
+      cursor: auto;
+      opacity: 0.4;
+    }
+
+    &:not(:last-child) {
+      margin-right: 12px;
+
+      @media (max-width: 400px) {
+        margin-right: 0;
+      }
+    }
+
+    svg {
+      width: 40px;
+      height: 40px;
+
+      @include vp-1023 {
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 }

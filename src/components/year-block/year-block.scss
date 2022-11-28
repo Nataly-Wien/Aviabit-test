@@ -2,6 +2,7 @@
 @import "../../sass/mixins.scss";
 
 .year-block {
+  box-sizing: border-box;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -29,6 +30,7 @@
     padding: 5px 10px;
     width: 170px;
     display: flex;
+    flex-shrink: 0;
     justify-content: space-between;
     align-items: center;
     font-size: 36px;
@@ -40,7 +42,7 @@
     transition: background-color $transition-default;
 
     @include vp-767 {
-      width: 130px;
+      width: 150px;
       min-width: 120px;
       margin-right: 12px;
       padding: 3px 6px;
@@ -48,7 +50,7 @@
     }
 
     @include vp-374 {
-      width: 120px;
+      width: 140px;
       margin-right: 8px;
     }
   }
@@ -95,6 +97,7 @@
     color: $color-default-white;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
     transition: background-color $transition-default;
 
     @include vp-767 {

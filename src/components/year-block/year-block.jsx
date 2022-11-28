@@ -43,12 +43,12 @@ const YearBlock = ({year, allFlights, yearsRange}) => {
             </svg>
           </Link>
           <span className="year-block__btn-wrapper">
-            <button className="year-block__btn" onClick={onYearUpClick} aria-label="Отобразить следующий год">
+            <button className="year-block__btn" onClick={onYearUpClick} type="button" aria-label="Отобразить следующий год">
               <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.001 16a1 1 0 0 1-.64-.23l-6-5a1.002 1.002 0 0 1 1.28-1.54l5.36 4.48 5.36-4.32a.998.998 0 0 1 1.41.15 1.001 1.001 0 0 1-.14 1.46l-6 4.83a1 1 0 0 1-.63.17Z" fill="currentColor" />
               </svg>
             </button>
-            <button className="year-block__btn" onClick={onYearDownClick} aria-label="Отобразить предыдущий год">
+            <button className="year-block__btn" onClick={onYearDownClick} type="button" aria-label="Отобразить предыдущий год">
               <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.001 16a1 1 0 0 1-.64-.23l-6-5a1.002 1.002 0 0 1 1.28-1.54l5.36 4.48 5.36-4.32a.998.998 0 0 1 1.41.15 1.001 1.001 0 0 1-.14 1.46l-6 4.83a1 1 0 0 1-.63.17Z" fill="currentColor" />
               </svg>
