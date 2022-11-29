@@ -1,20 +1,16 @@
 import dayjs from 'dayjs';
 
-const getSortedFlights = (flights) => flights.sort((a, b) => dayjs(a.dateFlight) - dayjs(b.dateFlight) || a.type - b.type);
+const getSortedFlights = (flights) => flights
+  .sort((a, b) => dayjs(a.dateFlight) - dayjs(b.dateFlight) || a.type - b.type);
 
 export const getFlightsYears = (flights) => Array.from(new Set(flights.map((it) => dayjs(it.dateFlight).year()))).sort((a, b) => a - b);
 
-// const alphanumericSort = (a, b) => {
-//   if (a.replace(/[0-9-]/g, ``) === b.replace(/[0-9-]/g, ``)) {
-//     return a.replace(/[a-z-]/ig, ``) - b.replace(/[a-z-]/ig, ``)
-//   } else {
-//     return a.replace(/[0-9-]/g, ``) > b.replace(/[0-9-]/g, ``) ? 1 : -1;
-//   }
-// };
+const alphanumericSortRule = (a, b) => a.replace(/[0-9-]/g, ``) === b.replace(/[0-9-]/g, ``) ?
+  a.replace(/[a-z-]/ig, ``) - b.replace(/[a-z-]/ig, ``) :
+  a.replace(/[0-9-]/g, ``) > b.replace(/[0-9-]/g, ``) ? 1 : -1;
 
-const alphanumericSort = (a, b) => a.replace(/[0-9-]/g, ``) === b.replace(/[0-9-]/g, ``) ? a.replace(/[a-z-]/ig, ``) - b.replace(/[a-z-]/ig, ``) : a.replace(/[0-9-]/g, ``) > b.replace(/[0-9-]/g, ``) ? 1 : -1;
-
-export const getFlightsNumbers = (flights) => Array.from(new Set(flights.map((it) => it.flight))).sort((a, b) => alphanumericSort(a, b));
+export const getFlightsNumbers = (flights) => Array.from(new Set(flights.map((it) => it.flight)))
+  .sort((a, b) => alphanumericSortRule(a, b));
 
 export const getStructuredData = (flights) => {
   const years = getFlightsYears(flights);

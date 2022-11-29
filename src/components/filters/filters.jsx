@@ -61,10 +61,6 @@ const Filters = ({period}) => {
         <div className="filters__input-wrapper">
           <input type="text" value={date} id="date" onInput={(evt) => setDate(`c ${evt.target.value.replace(`to`, `пo`)}`)}/>
           <span className="filters__calender" aria-label="Открыть календарь для выбора даты">
-            {/* <svg fill="none" xmlns="http://www.w3.org/2000/svg" width="41" height="44" viewBox="0 0 41 44">
-              <path d="M1 14.183h39M8 1l.09 9.742M33 1v10M40 40V9a3 3 0 00-3-3H4a3 3 0 00-3 3v31a3 3 0 003 3h33a3 3 0 003-3z" stroke="#000" />
-              <path d="M5 19h3M12.09 19h3M19.182 19h3M26.273 19h3M33.363 19h3M5 25h3M12.09 25h3M19.182 25h3M26.273 25h3M33.363 25h3M5 31h3M12.09 31h3M19.182 31h3M26.273 31h3M33.363 31h3M5 37h3M12.09 37h3M19.182 37h3M26.273 37h3M33.363 37h3" stroke="#336699" strokeWidth="3" />
-            </svg> */}
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
               <path d="M 12.550781 21.367188 L 17.449219 21.367188 L 17.449219 25.042969 L 12.550781 25.042969 Z M 12.550781 21.367188 " fill="currentColor" />
               <path d="M 12.550781 15.488281 L 17.449219 15.488281 L 17.449219 19.164062 L 12.550781 19.164062 Z M 12.550781 15.488281 " fill="currentColor" />

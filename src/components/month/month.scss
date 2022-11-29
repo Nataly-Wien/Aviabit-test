@@ -16,10 +16,15 @@
     background-color: $color-polo-blue;
     color: $color-default-white;
     border-radius: 3px;
+    pointer-events: none;
 
     @include vp-767 {
       font-size: 18px;
       padding: 0 30px;
+    }
+
+    @media (hover: none) {
+      pointer-events: all;
     }
   }
 
@@ -31,6 +36,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    pointer-events: all;
     transition: background-color $transition-default;
 
     @include vp-1023 {

@@ -98,8 +98,13 @@
   input {
     &#date {
       width: 310px;
+      padding-right: 50px;
       position: relative;
       z-index: 2;
+
+      @include vp-767 {
+        padding-right: 45px;
+      }
 
       @include vp-374 {
         width: 100%;
@@ -138,6 +143,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color $transition-default;
 
     @include vp-767 {
       font-size: 16px;
@@ -146,6 +152,10 @@
 
     &:not(:last-child) {
       margin-right: 20px;
+    }
+
+    @include has-hover {
+      background-color: $color-bermuda-grey;
     }
   }
 }

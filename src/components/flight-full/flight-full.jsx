@@ -7,8 +7,8 @@ const FlightFull = ({flight}) => {
   return (
     <div className="flight-full">
       <p className="flight-full__wrapper">
-        {flight.type ? <span className="flight-full__data flight-full__data--plan">По&nbsp;плану&nbsp;</span> : null}
-        на&nbsp;<span className="flight-full__data">
+        {flight.type ? <span className="flight-full__data flight-full__data--plan">По&nbsp;плану&nbsp;на&nbsp;</span> : null}
+        <span className="flight-full__data">
           {dayjs(flight.dateFlight).format('DD.MM.YY')},&nbsp;&nbsp;
         </span>
         <span className="flight-full__data">
