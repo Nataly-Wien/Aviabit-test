@@ -17,9 +17,7 @@ const SwiperView = ({flights, years}) => {
       {years.map((year) => {
         return (
           <SwiperSlide key={year}>
-            {/* <div> */}
-              <YearBlock year={year} allFlights={flights} yearsRange={years} />
-            {/* </div> */}
+            <YearBlock year={year} allFlights={flights} yearsRange={years} />
           </SwiperSlide>
         );
       })}

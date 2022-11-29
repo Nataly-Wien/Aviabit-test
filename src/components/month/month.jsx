@@ -10,7 +10,7 @@ const Month = ({flights, monthTitle}) => {
 
   return (
     <section className="month">
-      {monthTitle && <h2 className="month__title">
+      {monthTitle && <h2 className="month__title" onClick={() => setIsFullView(!isFullView)}>
         {monthTitle}
         <button className={`month__btn${isFullView ? ` month__btn--full-view` : ``}`} onClick={() => setIsFullView(!isFullView)} aria-label="Показать/скрыть месяц">
           <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
