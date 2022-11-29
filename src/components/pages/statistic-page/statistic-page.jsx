@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {setStatisticGridView} from '../../../store/view/view-slice';
+import {setStatisticGridView, setFlightFilter, setDateMinFilter, setDateMaxFilter} from '../../../store/view/view-slice';
 import Header from '../../header/header';
 import Statistic from '../../statistic/statistic';
 import Loader from '../../loader/loader';
@@ -39,6 +39,14 @@ const StatisticPage = () => {
 
     return () => mediaQuery.removeEventListener(`change`, setView);
   });
+
+  useEffect(() => {
+    return () => {
+      dispatch(setDateMinFilter(``));
+      dispatch(setDateMaxFilter(``));
+      dispatch(setFlightFilter(``));
+    };
+  }, [dispatch]);
 
   return (
     <div className="page">

@@ -14,7 +14,7 @@ const FlightShort = ({flight}) => {
         <span className="flight-short__data flight-time">
           {dayjs(flight.dateFlight).format('HH:mm')}
         </span>
-        <span className="flight-short__data flight">
+        <span className="flight-short__data flight-name">
           {flight.flight}
         </span>
         <span className="flight-short__data pln-type">
