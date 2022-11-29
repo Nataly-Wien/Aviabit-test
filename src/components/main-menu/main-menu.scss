@@ -2,54 +2,122 @@
 @import "../../sass/mixins.scss";
 
 .main-menu {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  background-color: $color-lochmara;
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    background-color: $color-lochmara;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 
-  @include vp-767 {
-    display: none;
-    position: absolute;
-    z-index: 30;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 60px 10px 40px;
-    flex-direction: column;
-    align-items: flex-start;
-
-    &--open {
+    @include vp-767 {
+      position: absolute;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px 60px 10px 40px;
       display: flex;
-      box-shadow: 0px 6px 4px -4px rgba($color-spindle, 0.2);
+      flex-direction: column;
+      align-items: flex-start;
+      transform: translateY(-100%);
+      transition: transform $transition-menu;
+
+      &--open {
+        transform: translateY(0);
+        box-shadow: 0px 6px 4px -4px rgba($color-spindle, 0.2);
+      }
     }
   }
-}
 
-.main-menu__item {
-  margin-left: 60px;
+  &__item {
+    margin-left: 60px;
 
-  @include vp-767 {
-    margin: 0;
+    @include vp-767 {
+      margin: 0;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
-  &:first-child {
-    margin-left: 0;
+  &__link {
+    display: block;
+    padding: 10px 15px;
+    color: $color-default-white;
+    transition: color $transition-default;
+
+    @include has-hover{
+      color: $color-spindle;
+    }
+
+    @include vp-767 {
+      padding: 6px 10px;
+    }
   }
-}
 
-.main-menu__link {
-  display: block;
-  padding: 10px 15px;
-  color: $color-default-white;
-  transition: color $transition-default;
+  &__btn {
+    position: absolute;
+    z-index: 32;
+    top: 8px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    display: none;
+    padding: 5px;
+    background-color: $color-lochmara;
+    color: $color-default-white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity $transition-default;
 
-  @include has-hover{
-    color: $color-spindle;
-  }
+    @include vp-767 {
+      display: block;
+    }
 
-  @include vp-767 {
-    padding: 6px 10px;
+    @include has-hover {
+      opacity: 0.7;
+    }
+
+    &::before,
+    &::after,
+    span::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 6px;
+      width: 28px;
+      height: 2px;
+      background-color: $color-default-white;
+      transition: transform $transition-menu;
+    }
+
+    &::after {
+      top: 26px;
+    }
+
+    span::before {
+      top: 18px;
+      transition: opacity $transition-menu;
+    }
+
+    &--open {
+      span::before {
+        opacity: 0;
+      }
+
+      &::before {
+        transform: translateY(8px)rotate(-45deg);
+      }
+
+      &::after {
+        transform: translateY(-8px) rotate(45deg);
+      }
+    }
   }
 }

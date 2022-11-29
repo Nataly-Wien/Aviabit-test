@@ -47,7 +47,7 @@ export const SLIDER_A11Y = {
 export const TABLE_HEADER_DATA = {
   "flight-date": "Дата",
   "flight-time": "Время",
-  "flight": "Рейс",
+  "flight-name": "Рейс",
   "pln-type": "Тип судна",
   "pln": "Борт №",
   "time-flight": "Налет",
