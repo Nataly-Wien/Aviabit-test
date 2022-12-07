@@ -12,6 +12,17 @@ const alphanumericSortRule = (a, b) => a.replace(/[0-9-]/g, ``) === b.replace(/[
 export const getFlightsNumbers = (flights) => Array.from(new Set(flights.map((it) => it.flight)))
   .sort((a, b) => alphanumericSortRule(a, b));
 
+export const convertToHours = (time) => Math.round(time / 3600);
+export const convertToMin = (time) => Math.round(time / 60);
+
+export const getHourMin = (time) => {
+  const hours = Math.trunc(time / 60);
+  const mins = (`00` + (time - (hours * 60))).slice(-2);
+
+  // return `${hours}′ ${mins}″`;
+  return `${hours}:${mins}`;
+};
+
 export const getStructuredData = (flights) => {
   const years = getFlightsYears(flights);
   const data = {};
@@ -20,7 +31,7 @@ export const getStructuredData = (flights) => {
     data[year] = [];
 
     for (let month = 0; month < 12; month++) {
-      const monthFlights = flights.filter((flight) => dayjs(flight.dateFlight).year() === year && dayjs(flight.dateFlight).month() === month)
+      const monthFlights = flights.filter((flight) => dayjs(flight.dateFlight).year() === year && dayjs(flight.dateFlight).month() === month);
       data[year].push(getSortedFlights(monthFlights));
     }
   });
@@ -78,3 +89,7 @@ export const isLocalStorageAvailable = () => {
     return false;
   }
 };
+
+export const toggleView = (setter, value) => {
+  setter(!value);
+  };

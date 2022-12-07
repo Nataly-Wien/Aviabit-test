@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import TableHeader from '../table-header/table-header';
 import Month from '../month/month';
 import Loader from '../loader/loader';
+import {convertToMin} from '../../common';
 import {MONTHS, ROUTES} from '../../const';
 
 const Detail = ({period}) => {
@@ -39,9 +40,23 @@ const Detail = ({period}) => {
       return;
     }
 
-    filteredFlights = flights.map(monthFlights => monthFlights
-      .filter((it) => flightFilter ? it.flight === flightFilter : it)
-      .filter((it) => dateMin || dateMax ? dayjs(it.dateFlight) >= dayjs(dateMin, `DD.MM.YYYY`) && dayjs(it.dateFlight) <= dayjs(dateMax, `DD.MM.YYYY`) : it));
+
+    filteredFlights = flights.map(monthFlights => monthFlights.reduce((filteredFlights, flight) => {
+      if ((!flightFilter || (flightFilter && flight.flight === flightFilter)) &&
+          ((!dateMin || !dateMax) ||
+            ((dateMin && dateMax) && dayjs(flight.dateFlight) >= dayjs(dateMin, `DD.MM.YYYY`) && dayjs(flight.dateFlight) <= dayjs(dateMax, `DD.MM.YYYY`)))) {
+        filteredFlights.push({
+          ...flight,
+          timeFlight: convertToMin(flight.timeFlight),
+          timeBlock: convertToMin(flight.timeBlock),
+          timeNight: convertToMin(flight.timeNight),
+          timeBiologicalNight: convertToMin(flight.timeBiologicalNight),
+          timeWork: convertToMin(flight.timeWork),
+        });
+      }
+
+      return filteredFlights;
+     }, []));
   }
 
   return (

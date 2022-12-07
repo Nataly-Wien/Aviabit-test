@@ -30,9 +30,6 @@ const dataSlice = createSlice({
   name: `data`,
   initialState,
   reducers: {
-    // setFlights(state, action) {
-    //   state.flights = action.payload;
-    // },
   },
   extraReducers: (builder) => {
     builder
@@ -54,7 +51,5 @@ const dataSlice = createSlice({
       })
   },
 });
-
-// export const {setFlights} = dataSlice.actions;
 
 export default dataSlice.reducer;

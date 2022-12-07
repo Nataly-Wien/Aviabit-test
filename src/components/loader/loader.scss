@@ -1,4 +1,5 @@
 @import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
 
 .loader {
   margin: auto;
@@ -8,6 +9,13 @@
     height: 100px;
     color: $color-lochmara;
     animation: rotation 1s linear infinite;
+    stroke-width: 3;
+    stroke-linecap: round;
+
+    @include vp-767 {
+      width: 60px;
+      height: 60px;
+    }
   }
 
   @keyframes rotation {

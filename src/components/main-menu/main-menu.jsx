@@ -9,9 +9,13 @@ const MainMenu = () => {
   const dispatch = useDispatch();
   const isMobileMenuOpen = useSelector((state) => state.view.isMobileMenuOpen);
 
+  const setMenuView = () => {
+    dispatch(setMobileMenuOpen(!isMobileMenuOpen));
+  };
+
   return (
     <div className="main-menu">
-      <button className={`main-menu__btn${isMobileMenuOpen ? ` main-menu__btn--open` : ``}`} type="button" aria-label="Меню сайта" onClick={(() => dispatch(setMobileMenuOpen(!isMobileMenuOpen)))}>
+      <button className={`main-menu__btn${isMobileMenuOpen ? ` main-menu__btn--open` : ``}`} type="button" aria-label="Меню сайта" onClick={setMenuView}>
         <span></span>
       </button>
       <ul className={`main-menu__list${isMobileMenuOpen ? ` main-menu__list--open` : ``}`}>
