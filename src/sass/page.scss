@@ -133,5 +133,10 @@
         height: 25px;
       }
     }
+
+    &--search svg {
+      fill-rule: evenodd;
+      clip-rule: evenodd;
+    }
   }
 }

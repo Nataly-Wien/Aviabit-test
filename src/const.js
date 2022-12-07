@@ -77,3 +77,11 @@ export const MENU_ITEMS = [
     link: `#`,
   },
 ];
+
+export const DATE_PATTERN = /(?<=[со] )\d{2}\.\d{2}\.\d{4}/g;
+
+export const EMPTY_FILTERS = {
+  flight: ``,
+  dateMin: ``,
+  dateMax: ``,
+};

@@ -15,14 +15,10 @@ const viewSlice = createSlice({
     setStatisticGridView(state, action) {
       state.isStatisticGridView = action.payload;
     },
-    setFlightFilter(state, action) {
-      state.flightFilter = action.payload;
-    },
-    setDateMinFilter(state, action) {
-      state.dateMinFilter = action.payload;
-    },
-    setDateMaxFilter(state, action) {
-      state.dateMaxFilter = action.payload;
+    setFilters(state, action) {
+      state.flightFilter = action.payload.flight;
+      state.dateMinFilter = action.payload.dateMin;
+      state.dateMaxFilter = action.payload.dateMax;
     },
     setMobileMenuOpen(state, action) {
       state.isMobileMenuOpen = action.payload;
@@ -30,6 +26,6 @@ const viewSlice = createSlice({
   },
 });
 
-export const {setStatisticGridView, setFlightFilter, setDateMinFilter, setDateMaxFilter, setMobileMenuOpen} = viewSlice.actions;
+export const {setStatisticGridView, setFilters, setMobileMenuOpen} = viewSlice.actions;
 
 export default viewSlice.reducer;
