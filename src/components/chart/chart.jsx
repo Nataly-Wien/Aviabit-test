@@ -8,7 +8,6 @@ import {CHART_MARGIN, CHART_LEGEND_DATA} from '../../const';
 
 const Chart = ({flights, isFilters}) => {
   const svgContainer = useRef(null);
-  // const
 
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
@@ -66,22 +65,11 @@ const Chart = ({flights, isFilters}) => {
             </g>
           )}
           <text className="chart__text" transform={`translate(-70, ${innerHeight / 2}) rotate(-90)`} x={0} y={0} style={{textAnchor: `middle`}}>Рабочее время</text>
-          <g>
-          {CHART_LEGEND_DATA.map((it, index) => (
-            <React.Fragment key={it.name}>
-              <rect className={`chart__legend chart__legend--${it.name}`} x={index * 120} y={innerHeight + 40} width={20} height={20} />
-              <text className="chart__legend-text" t x={index * 120 + 30} y={innerHeight + 58}>{it.text}</text>
-            </React.Fragment>
-          ))}
-          </g>
         </g>
       </svg>
-      {/* {CHART_LEGEND_DATA.map((it, index) => (
-        <React.Fragment>
-          <span className={`chart__legend chart__legend--${it.name}`} x={index * 120} y={innerHeight + 40} width={20} height={20} />
-          <span className="chart__legend-text" t x={index * 120 + 30} y={innerHeight + 58}>{it.text}</span>
-        </React.Fragment>
-      ))} */}
+      <ul className="chart__legend">
+        {CHART_LEGEND_DATA.map((it) => <li key={it.name} className={`chart__legend-text chart__legend-text--${it.name}`}>{it.text}</li>)}
+      </ul>
     </div>
   );
 };
