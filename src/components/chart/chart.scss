@@ -8,22 +8,20 @@
   flex-direction: column;
 
   @include vp-767 {
-    margin-left: -40px;
-    margin-right: -30px;
+    margin-top: 0;
+    margin-left: -50px;
   }
 
   svg {
     flex-grow: 1;
     width: 100%;
-    height: 100%;
   }
 
   &__line {
     stroke: $color-pattens-blue;
   }
 
-  &__col,
-  &__legend {
+  &__col {
     &--work {
       fill: $color-lochmara;
     }
@@ -46,7 +44,7 @@
   }
 
   &__axis-text,
-  &__text
+  &__text,
   &__legend-text {
     font-family: $ff-roboto;
     font-size: 20px;
@@ -68,9 +66,73 @@
     }
   }
 
+  &__legend {
+    margin: 0;
+    margin-left: 90px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+
+    @include vp-767 {
+      margin-top: 12px;
+    }
+  }
+
   &__legend-text {
-    fill: $color-lochmara;
-    fill: $color-light-slate-grey;
-    fill: $color-grey-chateau;
+    position: relative;
+    padding-left: 28px;
+    font-size: 18px;
+    line-height: 1;
+    color: $color-grey-chateau;
+
+    @include vp-767 {
+      margin-bottom: 10px;
+      font-size: 12px;
+      padding-left: 18px;
+    }
+
+    &:not(:last-child) {
+      margin-right: 30px;
+
+      @include vp-767 {
+        margin-right: 20px;
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+
+      @include vp-767 {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    &--work::before {
+      background-color: $color-lochmara;
+    }
+
+    &--flight::before {
+      background-color: $color-lipstick;
+    }
+
+    &--block::before {
+      background-color: $color-royal-purple;
+    }
+
+    &--night::before {
+      background-color: $color-highball;
+    }
+
+    &--biological::before {
+      background-color: $color-java;
+    }
   }
 }

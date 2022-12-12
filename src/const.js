@@ -95,8 +95,8 @@ export const EMPTY_FILTERS = {
 };
 
 export const CHART_MARGIN = {
-  top: 20,
+  top: 10,
   right: 20,
-  bottom: 70,
+  bottom: 60,
   left: 90,
 };
