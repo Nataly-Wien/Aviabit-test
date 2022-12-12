@@ -1,6 +1,6 @@
 import './filters.scss';
 import './flatpickr.min.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import flatpickr from 'flatpickr';
 import PropTypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
@@ -10,8 +10,11 @@ import SvgIcon from '../svg-icon/svg-icon';
 import {DATE_PATTERN, EMPTY_FILTERS} from '../../const';
 
 const Filters = ({period}) => {
+  const pickr = useRef(null);
+
   const [flight, setFlight] = useState(``);
   const [date, setDate] = useState(``);
+
   const flightNumbers = useSelector(selectFlightNumbers);
 
   const dispatch = useDispatch();
@@ -22,7 +25,7 @@ const Filters = ({period}) => {
     dispatch(setFilters({
       flight: flight,
       dateMin: dates ? dates[0] : ``,
-      dateMax: dates ? dates[1] : ``,
+      dateMax: !dates ? `` : dates[1] ? dates[1] : dates[0],
     }));
   };
 
@@ -33,7 +36,7 @@ const Filters = ({period}) => {
   }
 
   useEffect(() => {
-    const calender = flatpickr(`#date`, {
+    const calender = flatpickr(pickr.current, {
       mode: "range",
       dateFormat: `d.m.Y`,
       minDate: period[1] ? `01.${(`0` + (period[1] + 1)).slice(-2)}.${period[0]}` : `01.01.${period[0]}`,
@@ -52,13 +55,22 @@ const Filters = ({period}) => {
     };
   }, [period]);
 
+  useEffect(() => {
+    pickr.current.value = date;
+  });
+
+  useEffect(() => {
+    return () => {
+      dispatch(setFilters(EMPTY_FILTERS));
+    }
+  }, [dispatch]);
 
   return (
     <div className="filters">
       <div className="filters__wrapper">
         <label className="filters__label" htmlFor="date">Дата рейса:</label>
         <div className="filters__input-wrapper">
-          <input type="text" value={date} id="date" onInput={(evt) => setDate(`с ${evt.target.value.replace(`to`, `по`)}`)}/>
+          <input ref={pickr} type="text" value={date} id="date" onInput={(evt) => setDate(`с ${evt.target.value.replace(`to`, `по`)}`)} />
           <span className="filters__calender" aria-label="Открыть календарь для выбора даты">
             <SvgIcon name="calender" width="30" height="30" />
           </span>

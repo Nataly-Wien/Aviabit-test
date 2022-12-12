@@ -13,7 +13,7 @@ export const getFlightsNumbers = (flights) => Array.from(new Set(flights.map((it
   .sort((a, b) => alphanumericSortRule(a, b));
 
 export const convertToHours = (time) => Math.round(time / 3600);
-export const convertToMin = (time) => Math.round(time / 60);
+export const convertToMinutes = (time) => Math.round(time / 60);
 
 export const getHourMin = (time) => {
   const hours = Math.trunc(time / 60);
@@ -93,3 +93,23 @@ export const isLocalStorageAvailable = () => {
 export const toggleView = (setter, value) => {
   setter(!value);
   };
+
+export const getSumTimeFlights = (flights) => {
+  const flightsObj = flights.reduce((sumFlight, flight) => {
+    const date = flight.dateFlight.slice(0, 10);
+
+    if (date in sumFlight) {
+      sumFlight[date].timeFlight += flight.timeFlight;
+      sumFlight[date].timeBlock += flight.timeBlock;
+      sumFlight[date].timeNight += flight.timeNight;
+      sumFlight[date].timeBiologicalNight += flight.timeBiologicalNight;
+      sumFlight[date].timeWork += flight.timeWork;
+    } else {
+      sumFlight[date] = flight;
+    }
+
+    return sumFlight;
+  }, {});
+
+  return Object.keys(flightsObj).map((it) => flightsObj[it]);
+};
