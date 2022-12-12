@@ -51,19 +51,21 @@ const StatisticPage = () => {
   return (
     <div className="page">
       <Header />
-      <main className="page__main-section container">
-        <div className="page__title-wrapper">
-          <h1 className="page__title">Статистика</h1>
-          <div className="page__btn-wrapper">
-            <button className="page__btn" type="button" disabled={!isGridView} onClick={setViewByButton} aria-label="Отображать полосой">
-              <SvgIcon name="band" width="30" height="30"/>
-            </button>
-            <button className="page__btn" type="button" disabled={isGridView} onClick={setViewByButton} aria-label="Отображать плиткой">
-              <SvgIcon name="grid" width="30" height="30"/>
-            </button>
-          </div>
+      <main className="page__main-section">
+        <div className="container">
+          <div className="page__title-wrapper">
+            <h1 className="page__title">Статистика</h1>
+            <div className="page__btn-wrapper">
+              <button className="page__btn" type="button" disabled={!isGridView} onClick={setViewByButton} aria-label="Отображать полосой">
+                <SvgIcon name="band" width="30" height="30"/>
+              </button>
+              <button className="page__btn" type="button" disabled={isGridView} onClick={setViewByButton} aria-label="Отображать плиткой">
+                <SvgIcon name="grid" width="30" height="30"/>
+              </button>
+              </div>
+            </div>
+          {isLoading ? <Loader /> : isError ? <p className="page__message">{errMessage}</p> : <Statistic />}
         </div>
-        {isLoading ? <Loader /> : isError ? <p className="page__message">{errMessage}</p> : <Statistic />}
       </main>
     </div >
   );

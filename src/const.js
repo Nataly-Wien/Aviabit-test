@@ -63,6 +63,14 @@ export const TABLE_HEADER_DATA = {
   "landing-long": "Долгота",
 };
 
+export const CHART_LEGEND_DATA = [
+  {name: `flight`, text: `Налет`,},
+  {name: `block`, text: `Полетное`,},
+  {name: `night`, text: `Ночное`,},
+  {name: `biological`, text: `Био-ночь`,},
+  {name: `work` , text: `Рабочее`,},
+];
+
 export const MENU_ITEMS = [
   {
     name: `Пункт меню 1`,
@@ -84,4 +92,11 @@ export const EMPTY_FILTERS = {
   flight: ``,
   dateMin: ``,
   dateMax: ``,
+};
+
+export const CHART_MARGIN = {
+  top: 20,
+  right: 20,
+  bottom: 70,
+  left: 90,
 };
